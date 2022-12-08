@@ -6,9 +6,9 @@ const Heading = props =>{
       <Container fluid className="mt-3 ">
         <Row>
           <Col>
-            <Card>
-              <Card.Header style={{ backgroundColor: "gray" }}>
-                  <h1>The Generics</h1>
+            <Card style={{ backgroundColor: "gray" }}>
+              <Card.Header className="mx-auto">
+                <h1>The Generics</h1>
               </Card.Header>
             </Card>
           </Col>
