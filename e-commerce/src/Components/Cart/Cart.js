@@ -1,39 +1,50 @@
-import React from "react";
+import React, { useContext } from "react";
 import classes from './Cart.module.css';
 import CartItems from "./CartItems";
 import { Button, Card } from "react-bootstrap";
 import Modal from "../UI/Modal";
 import cartElements from "../../utils/CartData";
+import CartContex from "../ContexApi/CartContext";
 
 
 const Cart = props =>{
 
-     const Cartitems = (
+  const addItemHandaler = (item) =>{
+    CartCtx.addItem({ ...item, quantity: 1 });
+  }
+
+  const removeCartHandlar = (id) =>{
+    CartCtx.removeItem(id)
+  }
+
+  const CartCtx = useContext(CartContex)
+  const totalAmount = ` $${CartCtx.totalAmount}`
+
+
+     const CartItem = (
        <ul className={classes["cart-items"]}>
-         {cartElements.map((crt) => (
+         {CartCtx.items.map((item) => (
            <CartItems
-             id={crt.id}
-             title={crt.title}
-             imageUrl={crt.imageUrl}
-             price={crt.price}
-             quantity={crt.quantity}
-             //  onAdd = {}
-             //  onRemove = {}
+             key={item.id}
+             id={item.id}
+             title={item.title}
+             imageUrl={item.imageUrl}
+             price={item.price}
+             quantity={item.quantity}
+             onAdd={addItemHandaler.bind(null, item)}
+             onRemove={removeCartHandlar.bind(null, item.id)}
            />
          ))}
        </ul>
      );
 
-     console.log(Cartitems);
-        
-    
     return (
       <Modal>
         <Card>
-          {Cartitems}
+          {CartItem}
           <div className={classes.total}>
-            <sapan>Total Amount</sapan>
-            <span> 300</span>
+            <span>Total Amount</span>
+            <span>{totalAmount}</span>
           </div>
 
           <div className="ms-4">

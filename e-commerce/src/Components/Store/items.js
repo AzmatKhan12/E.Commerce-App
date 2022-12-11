@@ -1,27 +1,46 @@
-import React from "react";
-import { Card, Container,Col } from "react-bootstrap";
-import {Button} from "react-bootstrap";
-import { Data } from "../../utils/Data";
+import React, { useContext } from "react";
+import { Card, Container,Row,Col } from "react-bootstrap";
+
+import ItemsForm from "./ItemsForm";
+import CartContex from "../ContexApi/CartContext";
+
 
 const Items= props =>{
+
+  const Contex = useContext (CartContex)
+   const addToCartHandlar = quantity=>{
+     Contex.addItem({
+       id: props.id,
+       key:props.id,
+       imageUrl: props.imageUrl,
+       title: props.title,
+       quantity: quantity,
+       price : props.price
+
+     });
+   }
+
     return (
-      <Container>
-        <Col>
-          <div className="d-flex justify-content-center align-items-center m-4 ">
-            {Data?.map((elem) => (
-              <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src={elem?.imageUrl} />
-                <Card.Body>
-                  <div className="d-flex justify-content-between">
-                    <p> $ {elem?.price}</p>
-                    <Button variant="warning">Add To Cart</Button>
-                  </div>
-                </Card.Body>
-              </Card>
-            ))}
-          </div>
-        </Col>
+      <Container className="mt-3">
+        <Row >
+          <Col>
+            <Card style={{ width: "18rem" }}>
+              <Card.Img variant="top" src={props.imageUrl} />
+              <Card.Body id={props.id}>
+                <Card.Title>{props.title}</Card.Title>
+                <span>{props.quantity}</span>
+                <div className="d-flex justify-content-between">
+                  <span > ${props.price}</span>
+                  <ItemsForm onAddToCart ={addToCartHandlar}/>
+                  
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
       </Container>
+
+      
     );    
 }
 
