@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Heading from "./Heading";
 import { Data } from "../../utils/Data";
 import Items from "./items";
+import Footer from "./Footer";
 
 const Store = props =>{
   const product = Data.map((item) => (
@@ -18,8 +19,12 @@ const Store = props =>{
   
     return (
       <Fragment>
-        <Heading />
-        <ul>{product}</ul>
+        <Heading Heading={"The Generics"} />
+        <main>
+          <ul>{product}</ul>
+        </main>
+
+        <Footer title={"The Generics"} />
       </Fragment>
     );
 }

@@ -8,7 +8,9 @@ const Heading = props =>{
           <Col>
             <Card style={{ backgroundColor: "gray" }}>
               <Card.Header className="mx-auto">
-                <h1>The Generics</h1>
+                <h1 className="heading">{props.Heading}</h1>
+                <h3>{props.title}</h3>
+                <img src={props.url}/>
               </Card.Header>
             </Card>
           </Col>

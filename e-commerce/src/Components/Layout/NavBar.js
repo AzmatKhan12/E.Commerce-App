@@ -1,9 +1,6 @@
 import React,{Fragment} from "react";
 import { Container, Nav, Navbar, NavbarBrand } from "react-bootstrap";
-// import Home from "../Navigation/Home";
-// import Store from "../Navigation/Store";
-// import About from "../Navigation/About";
- import BtnCart from "../Button/BtnCart";
+import { Link, NavLink } from "react-router-dom";
 
 
 const NavBar = (props) =>{
@@ -13,13 +10,13 @@ const NavBar = (props) =>{
           <Navbar.Brand href="#home">{props.brand}</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav  className="mx-auto" >
-              <Nav.Link href="/">{props.homePage}</Nav.Link>
-              <Nav.Link href="/">{props.store}</Nav.Link>
-              <Nav.Link href="/">{props.about}</Nav.Link>
+            <Nav className="mx-auto">
+              <NavLink className="nlink" to="/Home">{props.homePage}</NavLink>
+              <NavLink className="nlink" to="/store">{props.store}</NavLink>
+              <NavLink className="nlink" to="/about">{props.about}</NavLink>
             </Nav>
             <Nav>
-              <Nav.Link eventKey={2} href="#memes">
+              <Nav.Link eventKey={2} href="#Cart">
                 {props.cart}
               </Nav.Link>
             </Nav>

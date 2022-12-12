@@ -7,7 +7,7 @@ const ItemsForm = props =>{
   const quantityInputRef = useRef()
     
   const submitHandler= (event)=>{
-    console.log('clicked')
+    
       event.preventDefault()
       const enteredQuantity = quantityInputRef.current.value;
       const enteredQuantityNumber = +enteredQuantity;
