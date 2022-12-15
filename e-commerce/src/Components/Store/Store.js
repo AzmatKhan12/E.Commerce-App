@@ -4,7 +4,8 @@ import { Data } from "../../utils/Data";
 import Items from "./items";
 import Footer from "./Footer";
 
-const Store = props =>{
+
+const Store = () =>{
   const product = Data.map((item) => (
     <Items 
     id={item.id}

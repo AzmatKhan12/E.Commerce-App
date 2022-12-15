@@ -1,13 +1,16 @@
 
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect ,Switch} from 'react-router-dom';
 import React,{Fragment,useState} from 'react';
 import NavBar from './Components/Layout/NavBar';
 import Store from './Components/Store/Store';
+import ProductDetails from './Components/Store/ProductDetails';
 import BtnCart from './Components/Button/BtnCart';
 import Cart from './Components/Cart/Cart';
 import CartProvider from './Components/ContexApi/CartProvider';
 import Home from './Components/Home/Home';
 import ContactUs from './Components/ContactUs/ContactUs';
+import About from './Components/About/About';
+
 
 const App =() => {
  const [isShown , setIsShown] = useState(false);
@@ -49,20 +52,6 @@ const App =() => {
     fetchMoviesHandler();
   }, [fetchMoviesHandler]);*/
 
-  async function addDetailsHandler(details) {
-    const response = await fetch(
-      "https://e-commerce-ca6c1-default-rtdb.asia-southeast1.firebasedatabase.app/customer.json",
-      {
-        method: "POST",
-        body: JSON.stringify(details),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await response.json();
-    console.log(data);
-  }
 
 
   const ShowCartHandlar = () => {
@@ -88,15 +77,26 @@ const App =() => {
           />
         </header>
         <main>
-          <Route path="/Home">
-            <Home />
-          </Route>
-          <Route path="/store">
-            <Store />
-          </Route>
-          <Route path="/contact">
-            <ContactUs onContact={addDetailsHandler} />
-          </Route>
+          <Switch>
+            <Route path="/" exact>
+              <Redirect to="/Home" />
+            </Route>
+            <Route path="/Home">
+              <Home />
+            </Route>
+            <Route path="/store" exact>
+              <Store />
+            </Route>
+            <Route path="/store/:productId">
+              <ProductDetails />
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/contact">
+              <ContactUs />
+            </Route>
+          </Switch>
         </main>
       </Fragment>
     </CartProvider>
