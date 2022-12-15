@@ -14,6 +14,7 @@ const NavBar = (props) =>{
               <NavLink className="nlink" to="/Home">{props.homePage}</NavLink>
               <NavLink className="nlink" to="/store">{props.store}</NavLink>
               <NavLink className="nlink" to="/about">{props.about}</NavLink>
+              <NavLink className='nlink' to="/contact">{props.contact}</NavLink>
             </Nav>
             <Nav>
               <Nav.Link eventKey={2} href="#Cart">
